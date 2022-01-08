@@ -8,7 +8,13 @@ appendMessage('Dołączyłeś do czatu')
 socket.emit('new-user', name)
 
 socket.on('chat-message', data => {
-    appendMessage(`${data.name}: ${data.message}`)
+    console.log(data)
+    if (data.length) {
+        data.forEach(message => {
+            appendMessage(`${message.name}: ${message.msg}`)
+        })
+    }
+    //appendMessage(`${data.name}: ${data.message}`)
 })
 
 socket.on('user-connected', name => {
